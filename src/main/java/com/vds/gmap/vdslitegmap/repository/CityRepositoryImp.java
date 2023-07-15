@@ -214,7 +214,7 @@ public class CityRepositoryImp {
         str.append(" ON VDSM20_CITYDISTANCE_ID = GL.VDSM58_CITYDISTANCE_ID)");
 		str.append("WHERE CITY_DISTANCE_ID IN (SELECT VDSM58_CITYDISTANCE_ID FROM KVDSM58_VDS_CITY_GEOMETRIC_DETAILS GT WHERE GT.VDSM58_TYPE = 'S' ");
 		
-		if(!country.equals("null") && !province.equals("null")) {
+		if(!country.equals("null") && (province != null && !province.equals("null"))) {
 		str.append(" AND UPPER(GT.VDSM58_COUNTRY) = '"+country.toUpperCase()+"'");
 		str.append(" AND UPPER(GT.VDSM58_PROVINCE) = '"+province.toUpperCase()+"')");
 		}else if(!country.equals("null")) {

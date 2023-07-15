@@ -1,6 +1,7 @@
 package com.vds.gmap.vdslitegmap.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,9 +46,9 @@ public class CityDistanceController {
 	}
 	
 	@GetMapping(path="citydetails", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<CityDetails>> getSystemCityDistance(@RequestParam(name="country") String country, @RequestParam(name="province") String province){
+	public ResponseEntity<List<CityDetails>> getSystemCityDistance(@RequestParam(name="country") String country, @RequestParam(name="province") Optional<String> province){
 		
-		return new ResponseEntity<List<CityDetails>>(cityRepo.getSystemCityDistance(country,province), HttpStatus.OK);
+		return new ResponseEntity<List<CityDetails>>(cityRepo.getSystemCityDistance(country,province.orElse(null)), HttpStatus.OK);
 		
 	}
 	
